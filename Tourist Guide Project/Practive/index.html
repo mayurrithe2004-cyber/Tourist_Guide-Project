@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tourist Guide — Landing (Pro)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root{
+    --bg1: #f4f8ff; --bg2:#eef6ff;
+    --card:#ffffff; --muted:#6b7280;
+    --accent:#0f4c81; --accent-2:#00203f; --accent-orange:#ff7a18;
+    --glass: rgba(255,255,255,0.65);
+    --glass-2: rgba(255,255,255,0.12);
+  }
+  *{box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,Arial;margin:0;padding:0}
+  body{background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#052027;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  /* header */
+  header{display:flex;justify-content:space-between;align-items:center;padding:18px 36px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#fff;position:sticky;top:0;z-index:60;box-shadow:0 6px 18px rgba(2,6,23,.12)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+  nav{display:flex;gap:14px;align-items:center}
+  nav a{color:#e9f4ff;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:8px;transition:all .18s}
+  nav a:hover{background:rgba(255,255,255,.04)}
+  .cta{background:var(--accent-orange);padding:8px 12px;border-radius:10px;color:#fff;box-shadow:0 8px 18px rgba(255,122,24,.12)}
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:56px 36px}
+  .hero-left{color:#fff}
+  .hero-title{font-weight:800;font-size:44px;line-height:1.02;text-shadow:0 6px 22px rgba(0,0,0,.28)}
+  .hero-sub{margin-top:12px;color:rgba(235,245,255,.92);font-size:16px}
+  .hero-cta{margin-top:20px;display:flex;gap:12px}
+  .searchbar{display:flex;background:var(--glass);padding:8px;border-radius:999px;backdrop-filter: blur(6px);box-shadow:0 8px 28px rgba(16,40,72,.12);align-items:center}
+  .searchbar input{border:none;background:transparent;padding:10px 12px;width:320px;outline:none;color:#012;}
+  /* hero carousel card */
+  .hero-right{background:linear-gradient(180deg,rgba(255,255,255,.06), rgba(255,255,255,.03));padding:20px;border-radius:14px;color:#fff;border:1px solid rgba(255,255,255,.06);box-shadow:0 10px 30px rgba(2,6,23,.08)}
+  .carousel{position:relative;overflow:hidden;border-radius:10px}
+  .slides{display:flex;transition:transform .8s cubic-bezier(.2,.9,.2,1)}
+  .slide{min-width:100%;height:180px;display:flex;align-items:flex-end;padding:14px;background-size:cover;background-position:center;gap:10px}
+  .slide .meta{background:linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.45));padding:8px;border-radius:8px;color:#fff}
+  .dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+  .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.25);cursor:pointer}
+  .dot.active{background:var(--accent-orange)}
+  /* animated place grid */
+  .places{padding:28px 36px}
+  .places-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .place-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(8,30,60,.06);transform:translateY(0);transition:transform .35s, box-shadow .35s}
+  .place-card:hover{transform:translateY(-8px);box-shadow:0 22px 60px rgba(8,30,60,.12)}
+  .place-img{width:100%;height:160px;object-fit:cover;display:block;transition:transform .8s}
+  .place-card:hover .place-img{transform:scale(1.06)}
+  .place-body{padding:14px}
+  .tags{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+  .tag{background:#f0f8ff;color:#0f4c81;padding:6px 8px;border-radius:999px;font-weight:600;font-size:12px}
+  /* modal (login/register/book) */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(2,6,23,.45),rgba(2,6,23,.45));z-index:999}
+  .modal .card{width:420px;padding:18px;border-radius:12px;background:var(--card);box-shadow:0 20px 60px rgba(2,6,23,.3)}
+  .form-row{margin-top:10px}
+  .input{width:100%;padding:12px;border-radius:10px;border:1px solid #e7eefb;outline:none}
+  .muted{color:var(--muted);font-size:13px;margin-top:8px}
+  /* footer */
+  footer{padding:18px;text-align:center;color:var(--muted);margin-top:28px}
+  /* small screens */
+  @media(max-width:920px){.hero{grid-template-columns:1fr;gap:18px;padding:26px}.hero-right{order:2;width:100%}.searchbar input{width:170px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><i class="fa fa-globe"></i> Tourist Guide Pro</div>
+  <nav>
+    <a href="#" onclick="scrollToSection('places')">Places</a>
+    <a href="#" onclick="openModal('login')">Login</a>
+    <a class="cta" href="customer.html">Customer</a>
+    <a class="cta" style="background:#0b2a4a" href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-title">Explore, Book & Travel — All in one smart platform</div>
+    <div class="hero-sub">Hand-picked packages, flexible booking, secure admin, and a customer dashboard — ideal for your college project.</div>
+
+    <div style="margin-top:18px" class="searchbar" role="search">
+      <i class="fa fa-search" style="color:#054"></i>
+      <input id="globalSearch" placeholder="Search places, packages..." oninput="doSearch()">
+      <button class="cta" onclick="location.href='customer.html'">Quick Book</button>
+    </div>
+
+    <div style="margin-top:18px;display:flex;gap:12px">
+      <button class="btn" style="background:#fff;color:#0f4c81" onclick="openModal('register')">Create Account</button>
+      <button class="btn" onclick="openModal('login')">Login</button>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <h3 style="margin:0 0 10px 0">Featured Experiences</h3>
+
+    <div class="carousel" id="carousel">
+      <div class="slides" id="slides">
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');">
+          <div class="meta"><strong>Goa Beach Escape</strong><div style="font-size:13px">Beach • Relax • Nightlife</div></div>
+        </div>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1564507592333-c60657eea523');">
+          <div class="meta"><strong>Taj Heritage Tour</strong><div style="font-size:13px">History • Culture</div></div>
+        </div>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');">
+          <div class="meta"><strong>Manali Adventure</strong><div style="font-size:13px">Mountains • Trekking</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<section id="places" class="places">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <h2 style="margin:0">Popular Destinations</h2>
+    <div class="muted">Click any card to quick-book or save to wishlist</div>
+  </div>
+
+  <div class="places-grid" id="placesGrid"></div>
+</section>
+
+<footer>© 2025 Tourist Guide — Polished Mini Project</footer>
+
+<!-- MODALS -->
+<div id="loginModal" class="modal" onclick="if(event.target===this)closeModal('login')">
+  <div class="card">
+    <h3>Login</h3>
+    <div class="form-row"><input id="loginEmail" class="input" placeholder="Email" /></div>
+    <div class="form-row"><input id="loginPass" type="password" class="input" placeholder="Password" /></div>
+    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn" onclick="doLogin()">Login</button><button class="btn" style="background:#f3f7fe;color:var(--accent-2)" onclick="closeModal('login')">Cancel</button></div>
+    <div class="muted">Demo: admin@admin.com / admin123 | user@demo.com / pass123</div>
+  </div>
+</div>
+
+<div id="registerModal" class="modal" onclick="if(event.target===this)closeModal('register')">
+  <div class="card">
+    <h3>Create Account</h3>
+    <div class="form-row"><input id="regName" class="input" placeholder="Full name" /></div>
+    <div class="form-row"><input id="regEmail" class="input" placeholder="Email" /></div>
+    <div class="form-row"><input id="regPass" class="input" type="password" placeholder="Password" /></div>
+    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn" onclick="doRegister()">Create</button><button class="btn" style="background:#f3f7fe;color:var(--accent-2)" onclick="closeModal('register')">Cancel</button></div>
+    <div class="muted">You can register a demo user — data stored in localStorage (client-only).</div>
+  </div>
+</div>
+
+<script>
+/* ----------------- Shared state (localStorage) ----------------- */
+const LS = 'tg_pro_v4';
+const sampleState = {
+  admin:{email:'admin@admin.com',pass:'admin123',name:'Administrator'},
+  users:[{id:1,name:'Demo User',email:'user@demo.com',pass:'pass123',mobile:'9876543210',bookings:[],wishlist:[]}],
+  destinations:[
+    {id:1,name:'Goa',location:'Goa, India',price:18000,desc:'Sandy beaches, nightlife & seafood',tags:['Beach','Relax'],img:'https://images.unsplash.com/photo-1548013146-72479768bada'},
+    {id:2,name:'Taj Mahal',location:'Agra, India',price:8500,desc:'Iconic Mughal monument',tags:['Historical'],img:'https://images.unsplash.com/photo-1564507592333-c60657eea523'},
+    {id:3,name:'Manali',location:'Himachal Pradesh',price:15000,desc:'Himalayan adventure & skiing',tags:['Mountains','Adventure'],img:'https://images.unsplash.com/photo-1501785888041-af3ef285b470'},
+    {id:4,name:'Udaipur',location:'Rajasthan',price:12500,desc:'Palaces, lakes & royal heritage',tags:['Heritage','Romantic'],img:'https://images.unsplash.com/photo-1549880338-65ddcdfd017b'},
+    {id:5,name:'Kerala Backwaters',location:'Kerala',price:22000,desc:'Houseboat cruises & spice tours',tags:['Cruise','Nature'],img:'https://images.unsplash.com/photo-1526772662000-3f88f10405ff'},
+    {id:6,name:'Goa - North',location:'Goa',price:17000,desc:'Beaches & water sports',tags:['Beach','Adventure'],img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e'}
+  ],
+  bookings: []
+};
+let state = JSON.parse(localStorage.getItem(LS)) || sampleState;
+localStorage.setItem(LS, JSON.stringify(state));
+
+/* ----------------- Carousel ----------------- */
+let cur = 0;
+const slides = document.getElementById('slides');
+const slideCount = slides.children.length;
+const dots = document.getElementById('dots');
+for(let i=0;i<slideCount;i++){
+  const d = document.createElement('div'); d.className='dot'; if(i===0) d.classList.add('active'); d.addEventListener('click',()=>goTo(i)); dots.appendChild(d);
+}
+function goTo(i){cur=i;slides.style.transform=`translateX(-${i*100}%)`; updateDots()}
+function updateDots(){[...dots.children].forEach((d,idx)=>d.classList.toggle('active', idx===cur))}
+setInterval(()=>{cur=(cur+1)%slideCount;goTo(cur)},4500);
+
+/* ----------------- Render Places (animated) ----------------- */
+function renderPlaces(){
+  const grid = document.getElementById('placesGrid'); grid.innerHTML='';
+  state.destinations.forEach(d=>{
+    const card = document.createElement('article'); card.className='place-card';
+    card.innerHTML = `
+      <img class="place-img" src="${d.img}" alt="${d.name}">
+      <div class="place-body">
+        <h3 style="margin:0">${d.name} <span style="float:right;font-weight:700">₹${d.price.toLocaleString()}</span></h3>
+        <p class="muted" style="margin-top:6px">${d.location} • ${d.desc}</p>
+        <div class="tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn" onclick="quickBook(${d.id})">Book Now</button>
+          <button style="background:#eef6ff;color:var(--accent-2)" onclick="toggleWishlist(${d.id})">Wishlist</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+renderPlaces();
+
+/* ----------------- Search ----------------- */
+function doSearch(){
+  const q = document.getElementById('globalSearch').value.toLowerCase();
+  document.querySelectorAll('.place-card').forEach(card=>{
+    card.style.display = card.innerText.toLowerCase().includes(q) ? 'block' : 'none';
+  });
+}
+
+/* ----------------- Login / Register / Book ----------------- */
+function openModal(name){document.getElementById(name+'Modal').style.display='flex'}
+function closeModal(name){document.getElementById(name+'Modal').style.display='none'}
+
+function doLogin(){
+  const e = document.getElementById('loginEmail').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  if(e===state.admin.email && p===state.admin.pass){
+    alert('Admin login — redirecting to admin dashboard'); location.href='admin.html'; return;
+  }
+  const u = state.users.find(u=>u.email===e && u.pass===p);
+  if(!u){ alert('Invalid credentials'); return; }
+  sessionStorage.setItem('tg_user', JSON.stringify(u)); alert('Login successful — opening customer dashboard'); location.href='customer.html';
+}
+
+function doRegister(){
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value.trim();
+  if(!name || !email || !pass){ alert('Please fill all fields'); return; }
+  if(state.users.find(u=>u.email===email)){ alert('User already exists'); return; }
+  const id = Math.max(0,...state.users.map(u=>u.id))+1;
+  const newUser = {id,name,email,pass,bookings:[],wishlist:[]};
+  state.users.push(newUser); localStorage.setItem(LS, JSON.stringify(state));
+  alert('Registered — now login'); closeModal('register'); openModal('login');
+}
+
+/* Quick book (opens booking dialog or sends to customer) */
+function quickBook(destId){
+  const user = JSON.parse(sessionStorage.getItem('tg_user'));
+  if(!user){ if(confirm('You need to login to book. Go to Customer Dashboard?')) location.href='customer.html'; return; }
+  // simple booking prompt as demo
+  const date = prompt('Enter travel date (YYYY-MM-DD)');
+  if(!date) return;
+  const qty = (+prompt('Travelers (1)', '1') || 1);
+  const dest = state.destinations.find(d=>d.id===destId);
+  const id = Math.max(0, ...(state.bookings||[]).map(b=>b.id)) + 1;
+  const booking = {id, touristId:user.id, destinationId:destId, packageName:dest.name, bookingDate:new Date().toISOString().slice(0,10), travelDate:date, amount:dest.price*qty, qty};
+  state.bookings.push(booking);
+  const u = state.users.find(x=>x.id===user.id); u.bookings.push(id);
+  localStorage.setItem(LS, JSON.stringify(state));
+  alert('Booking saved! Go to Customer Dashboard to view details.'); location.href='customer.html';
+}
+
+/* Wishlist toggle */
+function toggleWishlist(id){
+  const user = JSON.parse(sessionStorage.getItem('tg_user'));
+  if(!user){ alert('Login to use wishlist'); return; }
+  const u = state.users.find(x=>x.id===user.id);
+  if(!u.wishlist) u.wishlist = [];
+  if(u.wishlist.includes(id)){ u.wishlist = u.wishlist.filter(x=>x!==id); alert('Removed from wishlist'); }
+  else { u.wishlist.push(id); alert('Added to wishlist'); }
+  localStorage.setItem(LS, JSON.stringify(state));
+}
+
+/* quick scroll */
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
+</script>
+</body>
+</html>

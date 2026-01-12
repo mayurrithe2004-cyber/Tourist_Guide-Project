@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Dashboard — Tourist Guide</title>
+<link rel="stylesheet" href="css/customer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><i class="fa fa-globe"></i> Customer Dashboard</div>
+  <div><button class="btn" onclick="location.href='index.html'">Back to Site</button></div>
+</header>
+
+<div class="container">
+  <!-- Auth / Welcome Area -->
+  <div id="authArea" class="card"></div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="card">
+        <h3>Available Destinations</h3>
+        <div id="destList" class="dest-list"></div>
+      </div>
+
+      <div class="card">
+        <h3>Your Bookings</h3>
+        <div id="bookingList"></div>
+      </div>
+    </div>
+
+    <aside class="right">
+      <div class="card">
+        <h3>Your Profile</h3>
+        <div id="profileArea"></div>
+      </div>
+
+      <div class="card">
+        <h3>Wishlist</h3>
+        <div id="wishArea"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>© 2026 Tourist Guide — Customer Dashboard</footer>
+
+<script src="js/customer.js"></script>
+</body>
+</html>

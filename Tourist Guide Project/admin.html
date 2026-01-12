@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard — Tourist Guide Pro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><i class="fa fa-globe"></i> Admin Dashboard</div>
+    <nav>
+      <a class="cta" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <aside class="sidebar">
+      <h3>Admin Menu</h3>
+      <nav class="menu">
+        <a id="mDash" class="active" onclick="render('dashboard')">Dashboard</a>
+        <a id="mUsers" onclick="render('users')">Users</a>
+        <a id="mBookings" onclick="render('bookings')">Bookings</a>
+        <a id="mDests" onclick="render('destinations')">Destinations</a>
+        <a onclick="seedDemo()" style="margin-top:12px;background:#eaf6ff;color:#0f4c81;padding:8px;border-radius:8px;display:block;text-align:center">Seed Demo</a>
+      </nav>
+    </aside>
+
+    <main id="main">
+      <!-- content rendered by JS -->
+    </main>
+  </div>
+
+  <footer>© 2025 Tourist Guide — Admin Dashboard</footer>
+  <script src="js/admin.js"></script>
+</body>
+</html>
