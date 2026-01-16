@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Customer — Tourist Guide (Pro)</title>
+<link rel="stylesheet" href="css/customer.css">
+
+</head>
+<body>
+
+<header>
+  <div style="font-weight:700"><i class="fa fa-globe"></i> Customer Dashboard</div>
+  <div><button class="btn" onclick="location.href='index.html'">Back to site</button></div>
+</header>
+
+<div class="wrap">
+  <div id="authArea" class="card">
+    <!-- login or welcome will appear here -->
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h3>Available Destinations</h3>
+        <div id="destList" class="dest-list"></div>
+      </div>
+      <div class="card">
+        <h3>Your Bookings</h3>
+        <div id="bookingList"></div>
+      </div>
+    </div>
+
+    <aside>
+      <div class="card">
+        <h3>Your Profile</h3>
+        <div id="profileArea"></div>
+      </div>
+      <div class="card">
+        <h3>Wishlist</h3>
+        <div id="wishArea"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>© 2025 Tourist Guide — Customer</footer>
+
+<script src="js/customer.js"></script>
+</body>
+</html>

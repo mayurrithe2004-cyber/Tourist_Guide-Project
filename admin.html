@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin — Tourist Guide (Pro)</title>
+<link rel="stylesheet" href="css/admin.css">
+<style>
+  
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-weight:700"><i class="fa fa-globe"></i> Tourist Guide — Admin</div>
+  <div><button class="btn" onclick="logout()">Back to site</button></div>
+</header>
+
+<div class="wrap">
+  <aside class="sidebar">
+    <div style="font-size:20px;font-weight:700;margin-bottom:8px">Admin</div>
+    <div class="muted" style="margin-bottom:10px">manage the platform</div>
+    <nav class="menu">
+      <a id="mDash" class="active" onclick="render('dashboard')">Dashboard</a>
+      <a id="mUsers" onclick="render('users')">Users</a>
+      <a id="mBookings" onclick="render('bookings')">Bookings</a>
+      <a id="mDests" onclick="render('destinations')">Destinations</a>
+      <a onclick="seedDemo()" style="margin-top:8px;background:#eaf6ff;color:var(--accent);padding:8px;border-radius:8px;display:block;text-align:center">Seed Demo</a>
+    </nav>
+  </aside>
+
+  <main class="main" id="main">
+    <!-- content from JS -->
+  </main>
+</div>
+
+<footer>© 2025 Tourist Guide — Admin</footer>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
